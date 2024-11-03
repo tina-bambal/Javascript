@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array Operations</title>
+  <link rel="stylesheet" href="style_6.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Array Operations</h1>
+
+    <!-- Input for array size -->
+    <label for="arraySize">Enter array size: </label>
+    <input type="number" id="arraySize" placeholder="Enter size">
+    <button onclick="createArray()">Create Array</button>
+    <br><br> <!-- New line after create array button -->
+
+    <!-- Input to add an element -->
+    <label for="addElement">Enter element to add: </label>
+    <input type="text" id="addElement" placeholder="Element to add">
+    <button onclick="addElementStandard()">Add Element (Standard)</button>
+    <button onclick="addElementNonStandard()">Add Element (Non-Standard)</button>
+    <br><br>
+
+    <!-- View Current Array Button -->
+    <button onclick="viewArray()">View Current Array</button>
+    <br><br> <!-- New line after view array button -->
+
+    <!-- Input to delete an element -->
+    <label for="deleteElement">Enter element to delete: </label>
+    <input type="text" id="deleteElement" placeholder="Element to delete">
+    <button onclick="deleteElementStandard()">Delete Element (Standard)</button>
+    <button onclick="deleteElementNonStandard()">Delete Element (Non-Standard)</button>
+    <br><br>
+
+    <!-- Input to check if a value is present -->
+    <label for="checkValue">Enter value to check: </label>
+    <input type="text" id="checkValue" placeholder="Value to check">
+    <button onclick="checkValueStandard()">Check Value (Standard)</button>
+    <button onclick="checkValueNonStandard()">Check Value (Non-Standard)</button>
+    <br><br>
+
+    <!-- Empty Array Buttons -->
+    <button onclick="emptyArrayStandard()">Empty Array (Standard)</button>
+    <button onclick="emptyArrayNonStandard()">Empty Array (Non-Standard)</button>
+    <br><br>
+
+    <!-- Result display -->
+    <div id="result"></div>
+  
+
+  <script src="script_6.js"></script>
+</body>
+
+</html>

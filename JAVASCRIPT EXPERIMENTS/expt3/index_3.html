@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Operations</title>
+  <link rel="stylesheet" href="style_3.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>String Operations</h1>
+
+    <!-- Input field for string reversal and replacement -->
+    <label for="stringInput">Enter a string:</label>
+    <input type="text" id="stringInput" placeholder="Enter a string">
+
+    <label for="replaceChar">Character to replace:</label>
+    <input type="text" id="replaceChar" placeholder="Character to replace">
+
+    <label for="replaceWith">Replace with:</label>
+    <input type="text" id="replaceWith" placeholder="New character">
+
+    <!-- Buttons for Reverse, Replace, and Palindrome check -->
+    <button onclick="reverseString()">Reverse String</button>
+    <button onclick="replaceCharacter()">Replace Character</button>
+
+    <!-- Line break after Replace Character button -->
+    <br><br>
+
+    <!-- Input for checking palindrome -->
+    <label for="palindromeInput">Enter a string to check Palindrome:</label>
+    <input type="text" id="palindromeInput" placeholder="Check if Palindrome">
+    <button onclick="checkPalindrome()">Check Palindrome</button>
+
+    <!-- Line break after Check Palindrome button -->
+    <br><br>
+
+    <!-- Input for replacing a substring -->
+    <label for="substringInput">Enter substring to replace:</label>
+    <input type="text" id="substringInput" placeholder="Substring to replace">
+
+    <label for="replaceWithSubstring">Replace with:</label>
+    <input type="text" id="replaceWithSubstring" placeholder="New substring">
+    <button onclick="replaceSubstring()">Replace Substring</button>
+
+    <!-- Display the results -->
+    <div id="resultOutput"></div>
+
+    <!-- Display name and roll number -->
+    <div class="info">
+      <h2>Name: Teena Bambal</h2>
+      <h3>Roll Number: 42305</h3>
+    </div>
+
+  </div>
+
+  <script src="script_3.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Operations</title>
+    <link rel="stylesheet" href="style_7.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Array Operations</h1>
+      <div class="info">
+        <h2>Name: Teena Bambal 42305</h2>
+      </div>
+
+      <!-- Input to specify the size of the array -->
+      <label for="arraySize">Enter the array size:</label>
+      <input type="number" id="arraySize" placeholder="Array size" min="1" />
+      <button onclick="createArray()">Create Array</button>
+      <br /><br />
+
+      <!-- Input to add elements to the array -->
+      <label for="addElement">Enter an element :</label>
+      <input type="text" id="addElement" placeholder="Enter element" />
+      <button onclick="pushElement()">Add Element</button>
+      <br /><br />
+
+      <!-- Array operations: push, pop, shift, unshift -->
+
+      <!-- Button to view the current array -->
+      <button onclick="viewArray()">View Array</button>
+
+      <!-- Div to display the array results -->
+      <div id="arrayResult"></div>
+    </div>
+
+    <script src="script_7.js"></script>
+  </body>
+</html>

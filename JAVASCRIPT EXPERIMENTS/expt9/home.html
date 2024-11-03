@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .welcome-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #4caf50;
+    }
+
+    p {
+      color: #333;
+    }
+
+    /* Style for the logout button */
+    .logout-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .logout-btn:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="welcome-container">
+    <h1>Welcome!</h1>
+    <p id="welcomeMessage"></p>
+
+    <!-- Logout button -->
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    // Extract the name parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+
+    // Display the welcome message with the user's name
+    document.getElementById('welcomeMessage').textContent = `Congratulations ${name}, your form was submitted successfully!`;
+
+    // Redirect to login page on logout button click
+    function logout() {
+      // Redirect to the login page
+      window.location.href = 'index_9.html';
+    }
+
+    // Function to reset form data when the page is revisited or the form is submitted again
+    function clearFormData() {
+      localStorage.clear();  // Clear stored form data in localStorage if any
+      sessionStorage.clear(); // Clear session data as well
+    }
+
+    // Call the function to clear lingering form data
+    clearFormData();
+  </script>
+</body>
+
+</html>
