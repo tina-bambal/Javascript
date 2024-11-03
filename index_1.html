@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Area Calculator</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style_1.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Area Calculator</h2>
+    <!-- Triangle -->
+    <h3>Triangle (Heron's Formula)</h3>
+    <input type="number" id="sideA" placeholder="Enter side A">
+    <input type="number" id="sideB" placeholder="Enter side B">
+    <input type="number" id="sideC" placeholder="Enter side C">
+    <button onclick="calculateTriangleArea()">Calculate Triangle Area</button>
+    <div class="result" id="triangleResult"></div>
+    <!-- Rectangle -->
+    <h3>Rectangle</h3>
+    <input type="number" id="length" placeholder="Enter length">
+    <input type="number" id="width" placeholder="Enter width">
+    <button onclick="calculateRectangleArea()">Calculate Rectangle Area</button>
+    <div class="result" id="rectangleResult"></div>
+    <!-- Circle -->
+    <h3>Circle</h3>
+    <input type="number" id="radius" placeholder="Enter radius">
+    <button onclick="calculateCircleArea()">Calculate Circle Area</button>
+    <div class="result" id="circleResult"></div>
+
+    <!-- Display name and roll number -->
+    <div class="info">
+      <h2>Name: Teena Bambal</h2>
+      <h3>Roll Number: 42305</h3>
+    </div>
+  </div>
+
+
+
+  <!-- Link to external JavaScript -->
+  <script src="script_1.js"></script>
+</body>
+
+</html>
