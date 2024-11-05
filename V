@@ -1,0 +1,182 @@
+type memory_type is array (0 to depth-1) of std_logic_vector(7 downto 0);
+signal memory : memory_type :=(others => (others => '0')); --memory for queue. signal readptr,writeptr : integer := 0; --read and write pointers.
+signal empty,full : std_logic := '0'; begin
+fifo_empty <= empty; fifo_full <= full;
+
+process(Clk,reset)
+--this is the number of elements stored in fifo at a time.
+--this variable is used to decide whether the fifo is empty or full. variable num_elem : integer := 0;
+begin
+if(reset = '1') then
+
+--	for i in 0 to depth-1 loop
+--
+--	memory(i)<=(others=>'0');
+--	end loop;
+memory <= (others => (others=> '0'));
+
+data_out <= (others => '0'); empty <= '1';
+full <= '0';
+readptr <= 0;
+writeptr <= 0;
+num_elem := 0; elsif(rising_edge(Clk)) then
+if(enr = '1' and empty = '0') then –read
+data_out <= memory(readptr); readptr <= readptr + 1; num_elem := num_elem-1;
+end if;
+if(enw ='1' and full = '0') then	--write memory(writeptr) <= data_in; writeptr <= writeptr + 1;
+num_elem := num_elem+1; end if;
+--rolling over of the indices.
+if(readptr = depth-1) then	--resetting read pointer. readptr <= 0;
+end if;
+if(writeptr = depth-1) then	--resetting write pointer. writeptr <= 0;
+end if;
+--setting empty and full flags. if(num_elem = 0) then
+empty <= '1'; else
+empty <= '0'; end if;
+if(num_elem = depth) then full <= '1';
+else
+full <= '0'; end if;
+end if;
+end process;
+
+stim_proc: process begin
+reset <= '1'; --apply reset for one clock cycle. wait for clk_period;
+reset <= '0';
+wait for clk_period*3; --wait for 3 clock periods(simply) enw <= '1';	enr <= '0';	--write 10 values to fifo.
+for i in 1 to 10 loop
+Data_In <= conv_std_logic_vector(i,8); wait for clk_period;
+end loop;
+enw <= '0';	enr <= '1';	--read 4 values from fifo. wait for clk_period*4;
+enw <= '0';	enr <= '0';
+wait for clk_period*10; --wait for some clock cycles.
+
+2)
+signal div : std_logic_vector(15 downto 0); --- delay timer 1 signal clk_fsm,lcd_rs_s: std_logic;
+-- LCD controller FSM states
+type state is (reset,func,mode,cur,clear,d0,d1,d2,d3,d4,hold); signal ps1,nx	: state;
+signal dataout_s : std_logic_vector(7 downto 0); --- internal data command multiplexer begin
+clk divider process(rst,clk_12Mhz) begin
+if(rst = '1')then
+div <= (others=>'0');
+elsif( clk_12Mhz'event and clk_12Mhz ='1')then div <= div + 1;
+ 
+end if;
+
+end process;
+
+clk_fsm <= div(15);
+
+----- Presetn state Register ----------------------- process(rst,clk_fsm)
+begin
+if(rst = '1')then
+ps1	<= reset;
+elsif (rising_edge(clk_fsm)) then ps1	<= nx;
+end if;
+end process;
+
+----- state and output decoding process process(ps1)
+begin case(ps1) is
+
+ 
+when reset =>
+ 
+
+nx	<= func; lcd_rs_s		<= '0';
+dataout_s	<= "00111000";	-- 38h
+ 
+
+when func	=>
+nx	<= mode; lcd_rs_s		<= '0';
+dataout_s	<= "00111000";	-- 38h
+
+when mode	=>
+nx	<= cur; lcd_rs_s		<= '0';
+dataout_s	<= "00000110";	-- 06h
+
+ 
+
+
+
+
+line1
+ 
+when cur	=>
+nx	<= clear; lcd_rs_s		<= '0';
+dataout_s	<= "00001100";	-- 0Ch curser at starting point of
+ 
+
+ 
+when clear=>
+ 
+
+nx	<= d0; lcd_rs_s		<= '0';
+dataout_s	<= "00000001";	-- 01h
+ 
+
+when d0	=>
+lcd_rs_s	<= '1';
+dataout_s	<= "01010000";	-- P ( Decimal = 80 , HEX = 50 )
+
+ 
+
+nx	<= d1;
+
+when d1	
+=>
+lcd_rs_s	
+
+<= '1';	
+	dataout_s
+nx	<= d2;	<= "01001001";	-- I ( Decimal = 73 , HEX = 49 )
+when d2	=>
+lcd_rs_s	
+<= '1';	
+	dataout_s
+nx	<= d3;	<= "01000011";	-- C ( Decimal = 67 , HEX = 43 )
+when d3	=>
+lcd_rs_s	
+<= '1';	
+	dataout_s
+nx	<= d4;	<= "01010100";	-- T ( Decimal = 84 , HEX = 54 )
+when d4	=>
+lcd_rs_s	
+<= '1';	
+	dataout_s	<= "00100000";	-- space ( Decimal = 32 , HEX = 20 )
+nx	<= hold;
+
+ 
+
+
+
+NULL
+ 
+when hold	=>
+lcd_rs_s	<= '0';
+dataout_s	<= "00000000";	-- hold ( Decimal = 32 , HEX = 00 ) , nx	<= hold;
+ 
+when others=>
+
+
+
+end case; end process;
+
+lcd_en <= clk_fsm; lcd_rs <= lcd_rs_s; lcd_data <= dataout_s;
+
+end Behavioral;
+
+ 
+
+nx	<= reset; lcd_rs_s		<= '0';
+dataout_s	<= "00000001";	-- CLEAR ( Decimal = 1 , HEX = 01 )
+ 
+stim_proc: process begin
+rst <= '1';
+wait for 20 ns;
+
+rst <= '0';
+-- insert stimulus here
+
+wait;
+end process;
+
+
